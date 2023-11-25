@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import NavigationBar from './components/NavigationBar';
+import ProductList from './components/ProductList'; // Asegúrate de que la ruta de importación sea correcta.
 
 function App() {
+  const [endpoint, setEndpoint] = useState('all'); // Estado inicial del endpoint.
+
+  const handleSelectEndpoint = (newEndpoint) => {
+    console.log('Updating endpoint to: ', newEndpoint);
+    setEndpoint(newEndpoint);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavigationBar onSelectEndpoint={handleSelectEndpoint} />
+      <ProductList endpoint={endpoint} />
+    </>
   );
 }
 
